@@ -18,19 +18,27 @@ class _MyHomePageState extends State<MyHomePage> {
           title: const Text("Panier Flutter Sales"),
         ),
         body: Stack(
-          children: [
-            const RowTotalPrice(),
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text("Votre panier est actuellement vide"),
-                  Icon(Icons.image)
-                ],
-              ),
-            )
-          ],
+          children: const [RowTotalPrice(), EmptyCart()],
         ));
+  }
+}
+
+class EmptyCart extends StatelessWidget {
+  const EmptyCart({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Text("Votre panier est actuellement vide"),
+          Icon(Icons.image)
+        ],
+      ),
+    );
   }
 }
 
