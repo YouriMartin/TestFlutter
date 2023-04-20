@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:badges/badges.dart' as badges;
+import 'package:oliviershop/bo/cart_model.dart';
+import 'package:provider/provider.dart';
 
 import '../bo/product.dart';
 
@@ -36,14 +39,52 @@ class ListProductPage extends StatelessWidget {
         "Modèle de véhicule compatible : Alfa Romeo 166 2.4 JTD (all) année 10/98 ",
         56.50,
         "https://www.comptoirdutuning.fr/upload/thumbs/PipercrossRond-4639.jpg"),
+    Product(
+        6,
+        "Demon Wheels 71 Forged Edition Munich",
+        "Ah ça claque bien",
+        1850.63,
+        "https://www.comptoirdutuning.fr/upload/thumbs/fmunich-c38c.jpg"),
+    Product(
+        7,
+        "ANTENNE GPS DUMMY CHROMEE",
+        "Devenez le requin de votre cité!",
+        11.61,
+        "https://www.comptoirdutuning.fr/upload/thumbs/8424332695109_1-dbc8.jpg"),
+    Product(
+        8,
+        "KIT LAMBO DOORS POUR BMW SERIE3 COMPACT",
+        "Le kit comprend 2 charnières complètes pré-assemblées avec leur vérin, kit complet d´installation",
+        1310.00,
+        "https://www.comptoirdutuning.fr/upload/thumbs/lsd_e36compact-86fc.jpg"),
+    Product(
+        9,
+        "POMMEAU DE VITESSE \"MALTA\" CROIX DE MALTE",
+        "Rien n'est vrai tout est permis",
+        40.74,
+        "https://www.comptoirdutuning.fr/upload/thumbs/8424332889355_1-68e2.jpg"),
+    Product(
+        10,
+        "TAPIS CAOUTCHOUC LOOK ALU. 4PCS ROSE ",
+        "Code EAN 8/13 ou code UPC : 8424332186607",
+        31.41,
+        "https://www.comptoirdutuning.fr/upload/thumbs/8424332186607_1-d28c.jpg"),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Olivier shop"),
-        ),
+        appBar: AppBar(title: const Text("Olivier shop"), actions: [
+          badges.Badge(
+            position: badges.BadgePosition.topEnd(top: 0, end: 3),
+            badgeContent: Text(
+              context.watch<CartModel>().count.toString(),
+              style: const TextStyle(color: Colors.white),
+            ),
+            child: IconButton(
+                onPressed: () {}, icon: const Icon(Icons.shopping_cart)),
+          )
+        ]),
         body: ListView.builder(
           itemCount: listProduct.length,
           itemBuilder: (_, index) => Padding(
@@ -68,7 +109,9 @@ class ListProductPage extends StatelessWidget {
                       foregroundColor:
                           MaterialStateProperty.all<Color>(Colors.blue),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<CartModel>().addItem(listProduct[index]);
+                    },
                     child: Text(
                       'ajouter'.toUpperCase(),
                     ),

@@ -9,6 +9,7 @@ class DetailProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text(product.title)),
       body: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -20,7 +21,7 @@ class DetailProductPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(product.title,
-                  style: Theme.of(context).textTheme.bodyLarge),
+                  style: Theme.of(context).textTheme.headlineSmall),
             )
           ],
         ),
