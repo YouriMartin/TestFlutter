@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../bo/product.dart';
 
@@ -37,8 +38,6 @@ class ListProductPage extends StatelessWidget {
         "https://www.comptoirdutuning.fr/upload/thumbs/PipercrossRond-4639.jpg"),
   ];
 
-  get onPressed => null;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,10 +50,14 @@ class ListProductPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: Card(
                 child: ListTile(
-                  leading: Image(
-                    image: NetworkImage(listProduct[index].urlImage),
-                    width: 100,
-                  ),
+                  onTap: () => context.go('/detail', extra: listProduct[index]),
+                  leading: Hero(
+                      tag: listProduct[index].id,
+                      child: Image.network(
+                        listProduct[index].urlImage,
+                        width: 100,
+                        height: 100,
+                      )),
                   title: Text(listProduct[index].title),
                   subtitle: Text(
                     "${listProduct[index].price} €",
