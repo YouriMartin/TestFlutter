@@ -19,22 +19,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Stack(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text("Votre panier total est de :"),
-                  Padding(
-                    padding: EdgeInsets.only(right: 16.0),
-                    child: Text(
-                      "0.00€",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  )
-                ],
-              ),
-            ),
+            const RowTotalPrice(),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -46,5 +31,31 @@ class _MyHomePageState extends State<MyHomePage> {
             )
           ],
         ));
+  }
+}
+
+class RowTotalPrice extends StatelessWidget {
+  const RowTotalPrice({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: const [
+          Text("Votre panier total est de :"),
+          Padding(
+            padding: EdgeInsets.only(right: 16.0),
+            child: Text(
+              "0.00€",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
